@@ -3,22 +3,13 @@
     cd /etc/rc.d/init.d
     ./iptables save
 
- 阿里云主机配置：
-    公网IP 123.57.240.242
-    root  Sbx123456
-    shijunbo|work  sbx123456
-
   http://123.57.240.242:80/shop
   shop
   zhNhRY8DkB50G3ov3RjdwRKHg4VNfFLDQaxoDU4pEET
 
 
   http://203.195.175.200/shop.php
-  sbxshop
-
-阿里云账号  shijunbo2005@126.com  zhangwei861102
-微信公众平台账号 406654610@qq.com zw5852516
-
+  sbxsh
 
 查看端口上进程  lsof -i:80
 网卡监听tcp包  tcpdump tcp -i eth0 -t -s 0 -w ./target.cap
