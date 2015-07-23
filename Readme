@@ -1,0 +1,53 @@
+增加路由规则，将网卡eth1  80端口的请求转发到8000端口:
+    iptables -A PREROUTING -t nat -i eth1 -p tcp --dport 80 -j REDIRECT --to-port 8000
+    cd /etc/rc.d/init.d
+    ./iptables save
+
+ 阿里云主机配置：
+    公网IP 123.57.240.242
+    root  Sbx123456
+    shijunbo|work  sbx123456
+
+  http://123.57.240.242:80/shop
+  shop
+  zhNhRY8DkB50G3ov3RjdwRKHg4VNfFLDQaxoDU4pEET
+
+
+  http://203.195.175.200/shop.php
+  sbxshop
+
+阿里云账号  shijunbo2005@126.com  zhangwei861102
+微信公众平台账号 406654610@qq.com zw5852516
+
+
+查看端口上进程  lsof -i:80
+网卡监听tcp包  tcpdump tcp -i eth0 -t -s 0 -w ./target.cap
+tcpdump 使用 http://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html
+
+
+apache httpd安装:
+tar -xvzf httpd-2.2.31.tar.gz
+  124  cd httpd-2.2.31
+  126  ./configure?--prefix=/usr/local/apache22
+  127  ./configure --prefix=/usr/local/apache22
+  128  make&&make install
+  130  cd /usr/local/apache22
+  131  cd bin/
+  133  ./apachectl start
+  135  cd ../
+  137  vim conf/httpd.conf
+  139  ./bin/apachectl start
+  140  ps -aux | grep apa
+
+ mysq安装：
+ mysql-5.1.55
+
+
+php安装
+./configure --prefix=/usr/local/php5 --with-config-file-path=/usr/local/php5/etc --with-apxs2=/usr/local/apache22/bin/apxs --enable-fpm &&  make && make install && /bin/cp -f php.ini-production /usr/local/php5/etc/php.ini
+
+
+
+nginx+lua
+安装 http://haoyun.blog.51cto.com/2038762/1301257
+使用 http://outofmemory.cn/code-snippet/14396/nginx-and-lua

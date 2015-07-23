@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder>
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger [%file:%line] [%X{logid}]- %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ERR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/shopping.err.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>
+                logs/shopping.err.log.%d{yyyy-MM-dd}.gz
+			</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+		<encoder>
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger [%file:%line] [%X{logid}]- %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/shopping.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>
+                logs/shopping.log.%d{yyyy-MM-dd}.gz
+			</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger [%file:%line] [%X{logid}]- %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/access.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>
+                logs/access.log.%d{yyyy-MM-dd}.gz
+			</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>
+				[%X{logid}]- %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.restlet">
+		<level value="INFO" />
+	</logger>
+	<logger name="org.eclipse.jetty">
+		<level value="INFO" />
+	</logger>
+
+	<logger name="LogService" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="ACCESS" />
+	</logger>
+
+	<logger name="org.apache.ibatis">
+		<level value="INFO" />
+	</logger>
+	<logger name="java.sql">
+		<level value="INFO" />
+	</logger>
+	<logger name="java.sql.Connection">
+		<level value="INFO" />
+	</logger>
+	<logger name="spam.ibatis.mapper">
+		<level value="INFO" />
+	</logger>
+
+	<root>
+		<level value="${log.level}" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="ERR" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
