@@ -13,4 +13,6 @@ public class Constant {
     public static final String REQ_MSG_ID = "MsgId";
     public static final String REQ_CONTENT = "Content";
     public static final String ACCESS_TOKEN = "access_token";
+
+    public static final String MOBILE_TOKEN = "@手机";
 }

@@ -13,6 +13,8 @@ import com.guogod.shopping.rest.api.RecommandMobileServerResource;
 import com.guogod.shopping.service.AccessToken;
 import com.guogod.shopping.service.ApiService;
 import com.guogod.shopping.service.ApiServiceImpl;
+import com.guogod.shopping.user.AgentServer;
+import com.guogod.shopping.user.IAgentServer;
 import com.guogod.shopping.utils.CommonUtils;
 import org.apache.commons.configuration.Configuration;
 import org.apache.http.client.HttpClient;
@@ -59,7 +61,7 @@ public class GuiceModule extends AbstractModule{
 
         bind(String.class).annotatedWith(Names.named("channelPrefix")).toInstance("_missphone_");
         bind(String.class).annotatedWith(Names.named("cooperSourcePrefix")).toInstance("_cooper_");
-
+        bind(IAgentServer.class).to(AgentServer.class).in(Singleton.class);
     }
 
 //    @Provides

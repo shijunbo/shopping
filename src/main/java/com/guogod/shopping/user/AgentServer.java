@@ -1,16 +1,25 @@
 package com.guogod.shopping.user;
 
+import com.google.inject.Inject;
+import com.guogod.shopping.utils.Constant;
+import org.apache.commons.configuration.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by didi on 2015/7/23.
  */
 public class AgentServer implements IAgentServer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AgentServer.class);
     private ConcurrentHashMap<String, IAgent> agents = new ConcurrentHashMap<String, IAgent>();
-    private static AgentServer agentServer = new AgentServer();
-    private AgentServer() {}
-    public static AgentServer getIns() { return agentServer; }
+    private Configuration configuration;
 
+    @Inject
+    public AgentServer(Configuration configuration){
+        this.configuration = configuration;
+    }
 
     @Override
     public void start() {
@@ -24,8 +33,8 @@ public class AgentServer implements IAgentServer {
 
     @Override
     public IAgent newAgent(String id, String params) {
-        if ( !agents.contains(id) ){
-            if ( params == "@手机" ){
+        if ( !agents.containsKey(id) ){
+            if ( Constant.MOBILE_TOKEN.equalsIgnoreCase(params) ){
                 AgentBase base = new AgentBase();
                 base.setStatus(AgentStatus.ONIDLE);
                 base.setType(AgentConsumeType.MOBILE);

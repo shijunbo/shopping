@@ -5,7 +5,7 @@ package com.guogod.shopping.user;
  */
 public abstract class Agent implements IAgent {
     private AgentBase baseinfo;
-    private volatile AgentStatus status = AgentStatus.ONEND;
+    protected volatile AgentStatus status = AgentStatus.ONEND;
 
     public Agent(AgentBase baseinfo){
         this.baseinfo = baseinfo;
@@ -14,7 +14,7 @@ public abstract class Agent implements IAgent {
 
     @Override
     public boolean isOnline() {
-        return status != AgentStatus.ONEND;
+        return status == AgentStatus.ONCOMSUMER;
     }
 
     @Override
@@ -29,6 +29,6 @@ public abstract class Agent implements IAgent {
 
     @Override
     public void setStatus(AgentStatus status) {
-        status = status;
+        this.status = status;
     }
 }

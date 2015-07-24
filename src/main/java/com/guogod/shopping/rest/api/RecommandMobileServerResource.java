@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.guogod.shopping.model.response.Message;
 import com.guogod.shopping.model.response.MessageUtils;
 import com.guogod.shopping.model.response.TextMessage;
+import com.guogod.shopping.user.IAgent;
+import com.guogod.shopping.user.IAgentServer;
 import com.guogod.shopping.utils.Constant;
 import com.guogod.shopping.utils.XMLUtils;
 import org.apache.commons.configuration.Configuration;
@@ -30,9 +32,11 @@ import com.guogod.shopping.utils.SignUtils;
  */
 public class RecommandMobileServerResource extends AbstractServerResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(RecommandMobileServerResource.class);
+    private IAgentServer agentServer;
 
     @Inject
-    public RecommandMobileServerResource(Configuration config) {
+    public RecommandMobileServerResource(Configuration config, IAgentServer agentServer) {
+        this.agentServer = agentServer;
         this.configuration = config;
     }
 
@@ -69,13 +73,6 @@ public class RecommandMobileServerResource extends AbstractServerResource {
                 throw new IllegalArgumentException("invalid request.");
             }
 
-            LOGGER.info("Header {}", ((Series) this.getRequestAttributes().get("org.restlet.http.headers")));
-            LOGGER.info("CharSet {}", Charset.defaultCharset().displayName());
-
-            if ( null != representation.getCharacterSet()){
-                LOGGER.info("coding {}", representation.getCharacterSet().getName());
-            }
-
             InputStream inputStream = representation.getStream();
             if (!(inputStream instanceof GZIPInputStream)) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream((int) representation.getSize());
@@ -91,7 +88,7 @@ public class RecommandMobileServerResource extends AbstractServerResource {
                 }
             }
 
-            String body = IOUtils.toString(inputStream,Charset.forName("UTF-8"));
+            String body = IOUtils.toString(inputStream, Charset.forName("UTF-8"));
             if ( LOGGER.isDebugEnabled() ){
                 LOGGER.debug("{}", body);
             }
@@ -100,9 +97,18 @@ public class RecommandMobileServerResource extends AbstractServerResource {
             if ( Constant.REQ_MESSAGE_TYPE_TEXT.equalsIgnoreCase((String) bodyMap.get( Constant.REQ_MESSAGE_TYPE )) ){
                 message = new TextMessage();
                 MessageUtils.fillMessage(message, bodyMap);
-                String content = (String) bodyMap.get(Constant.REQ_CONTENT);
                 message.setMsgType(Constant.REQ_MESSAGE_TYPE_TEXT);
-                ((TextMessage) message).setContent("replay " + content);
+                String userId = (String)bodyMap.get(Constant.REQ_FROM_USER_NAME);
+                String content = (String) bodyMap.get(Constant.REQ_CONTENT);
+                String result = null;
+                IAgent agent = this.agentServer.newAgent(userId, content);
+                if ( null != agent ){
+                    result = agent.doWork(content);
+                }
+                if ( null !=  result ) {
+                    content = result;
+                }
+                ((TextMessage) message).setContent(content);
             }
         } catch (IllegalArgumentException e) {
             setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
