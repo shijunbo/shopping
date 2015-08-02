@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 设置超时时间，它决定驱动等待一个数据库响应的时间 -->
+		<setting name="defaultStatementTimeout" value="25000" />
+		<setting name="logImpl" value="SLF4J" />
+	</settings>
+	<environments default="${mysql.environment}">
+		<environment id="prod">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1:88888/shopping?autoReconnect=true&amp;maxReconnects=10&amp;connectTimeout=10000&amp;socketTimeout=60000" />
+				<property name="username" value="work" />
+				<property name="password" value="*******" />
+				<property name="poolMaximumActiveConnections" value="50" />
+				<property name="poolMaximumIdleConnections" value="20" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="shopping/ibatis/mapper/mobile.xml" />
+	</mappers>
+</configuration>

@@ -37,14 +37,14 @@
             <fileMode>0744</fileMode>
             <lineEnding>unix</lineEnding>
         </fileSet>
-        <fileSet>
-            <directory>${project.build.directory}/classes/data</directory>
-            <outputDirectory>data</outputDirectory>
-            <includes>
-                <include>*.json</include>
-            </includes>
-            <lineEnding>unix</lineEnding>
-        </fileSet>
+        <!--<fileSet>-->
+            <!--<directory>${project.build.directory}/classes/data</directory>-->
+            <!--<outputDirectory>data</outputDirectory>-->
+            <!--<includes>-->
+                <!--<include>*.json</include>-->
+            <!--</includes>-->
+            <!--<lineEnding>unix</lineEnding>-->
+        <!--</fileSet>-->
 	    <fileSet>
             <directory>${project.build.directory}/classes</directory>
             <outputDirectory>conf</outputDirectory>

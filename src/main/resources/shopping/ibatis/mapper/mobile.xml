@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dianxinos.dianhua_api.dao.mapper.IMobileMapper">
+    <select id="getMobileByPrice"  parameterType="map"  resultType="HashMap">
+        <![CDATA[select
+        id,
+        brand,
+        brand_eval,
+        model,
+        model_eval,
+        os,
+        os_eval,
+        screen,
+        screen_eval,
+        cpu,
+        cpu_eval,
+        memory,
+        memory_eval,
+        weight,
+        weight_eval,
+        shape,
+        shape_eval,
+        camera,
+        camera_eval,
+        battery,
+        battery_eval,
+        salerank,
+        price
+        from mobile
+        where price >= #{minprice} and price <= #{maxprice} order by salerank limit #{size}; ]]>
+    </select>
+</mapper>

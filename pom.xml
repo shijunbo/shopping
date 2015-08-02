@@ -22,6 +22,7 @@
                 <api.access_token>https://api.weixin.qq.com/cgi-bin/token</api.access_token>
                 <api.menu_create>https://api.weixin.qq.com/cgi-bin/menu/create</api.menu_create>
                 <shell.env.java_home>/home/work/local/jdk7</shell.env.java_home>
+                <mysql.environment>local</mysql.environment>
             </properties>
         </profile>
         <profile>
@@ -44,7 +45,8 @@
                 <api.access_token>https://api.weixin.qq.com/cgi-bin/token</api.access_token>
                 <api.menu_create>https://api.weixin.qq.com/cgi-bin/menu/create</api.menu_create>
                 <shell.env.java_home>/home/work/local/jdk7</shell.env.java_home>
-                <env.JAVA_HOME_7>C:\Program Files\Java\jdk1.7.0_79</env.JAVA_HOME_7>
+                <env.JAVA_HOME_7>/home/shijunbo/local/java/jdk1.7.0_79</env.JAVA_HOME_7>
+                <mysql.environment>prod</mysql.environment>
             </properties>
         </profile>
     </profiles>

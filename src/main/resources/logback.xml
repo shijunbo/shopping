@@ -60,6 +60,25 @@
 		</encoder>
 	</appender>
 
+	<appender name="MOBILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/mobile.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>
+				logs/mobile.log.%d{yyyy-MM-dd}.gz
+			</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<encoder>
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} %msg %X{logid}%n
+			</Pattern>
+		</encoder>
+	</appender>
+
 	<logger name="org.restlet">
 		<level value="INFO" />
 	</logger>
@@ -70,6 +89,11 @@
 	<logger name="LogService" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="ACCESS" />
+	</logger>
+
+	<logger name="com.guogod.shopping.mobile" additivity="false">
+		<appender-ref ref="MOBILE" />
+		<level value="INFO" />
 	</logger>
 
 	<logger name="org.apache.ibatis">

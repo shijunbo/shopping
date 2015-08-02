@@ -102,7 +102,7 @@ public class RetrievalResponse {
                 sb.append(begin);
                 sb.append(Character.toUpperCase(next));
                 index += 2;
-            }else if ( begin == '/' && Character.isLetter(next) ){
+            }else if ( xml.charAt(index-1) == '<' && begin == '/' && Character.isLetter(next) ){
                 sb.append(begin);
                 sb.append(Character.toUpperCase(next));
                 index += 2;

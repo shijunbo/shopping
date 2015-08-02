@@ -32,6 +32,13 @@ tar -xvzf httpd-2.2.31.tar.gz
 
  mysq安装：
  mysql-5.1.55
+ user mydb;
+ alter database mydb  character set utf8;
+
+
+ insert into mobile (brand, model, os, screen, cpu, memory, weight, shape, camera, battery, price, salerank) value ('华为','荣耀6（H60-L01）移动4G版', 'Android 4.4', '5.000英寸', '海思Kirin 920 八核', '机身内存 16GB|运行内存 3GB', '约130g(包括电池)', '直板139.6mm*69.7mm*7.5mm', '1300万像素', '3100mA(Li-Polymer 锂聚合物电池)', 1659, 1286);
+ Query OK, 1 row affected (0.00 sec)
+
 
 
 php安装
@@ -42,3 +49,15 @@ php安装
 nginx+lua
 安装 http://haoyun.blog.51cto.com/2038762/1301257
 使用 http://outofmemory.cn/code-snippet/14396/nginx-and-lua
+
+
+/etc/init.d/mysqld  start
+/usr/bin/mysqladmin -u root -p shutdown
+
+修改密码:
+ /usr/bin/mysqladmin -u root password "new password"
+
+ create database shopping
+
+
+
