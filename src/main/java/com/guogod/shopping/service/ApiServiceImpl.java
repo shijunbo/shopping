@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.FileEntity;
 import org.apache.http.entity.StringEntity;
 import org.codehaus.jackson.JsonNode;
 import org.slf4j.Logger;
@@ -85,7 +86,6 @@ public class ApiServiceImpl implements ApiService {
             apiUri = uriBuilder.build();
             HttpPost httpPost = new HttpPost(apiUri);
             httpPost.setEntity(new StringEntity(menu, ContentType.APPLICATION_JSON));
-
             JsonNode jsonObject = httpClient.execute(httpPost, new DXJSONResponseHandler());
             if ( null != jsonObject ) {
                 result = JSONUtils.toObject(jsonObject, JSONUtils.MAP_TYPE_REF);

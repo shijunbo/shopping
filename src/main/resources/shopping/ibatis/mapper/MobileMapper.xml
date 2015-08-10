@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dianxinos.dianhua_api.dao.mapper.IMobileMapper">
+<mapper namespace="com.guogod.shopping.dao.mapper.IMobileMapper">
     <select id="getMobileByPrice"  parameterType="map"  resultType="HashMap">
         <![CDATA[select
         id,

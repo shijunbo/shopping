@@ -52,28 +52,7 @@
     </profiles>
 
     <repositories>
-        <!--<repository>-->
-            <!--<id>dianxin</id>-->
-            <!--<name>dianxin repository</name>-->
-            <!--<url>http://sjws.baidu.com/artifactory/repo</url>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>dianxin-local</id>-->
-            <!--<name>dianxin repository</name>-->
-            <!--<url>http://sjws.baidu.com/artifactory/libs-release-local</url>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</repository>-->
+
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
